@@ -14,6 +14,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   qrcodes   QRCode[]
+  rooms     Room[]
 }
 
 model QRCode {
@@ -26,3 +27,29 @@ model QRCode {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Room {
+  id             String   @id @default(uuid())
+  name           String
+  status         String   @default("OPEN") // OPEN, SPINNING, FINISHED
+  allowedSpinner String?  // ID of player allowed to spin, or "ADMIN"
+  winnerName     String?
+  spinAngle      Float?
+  spinDuration   Int      @default(5000)
+  targetAngle    Float?
+  isSpinning     Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  adminId        String
+  admin          User     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  players        Player[]
+}
+
+model Player {
+  id        String   @id @default(uuid())
+  name      String
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  joinedAt  DateTime @default(now())
+}
+
