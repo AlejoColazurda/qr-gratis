@@ -361,7 +361,18 @@ export default function Home() {
             <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
               QR Gratis
             </h1>
-            <p className="text-slate-400 text-sm mt-1">Generador de QRs Premium con historial</p>
+            <p className="text-slate-400 text-sm mt-1">
+              Generador de QRs hecho por{' '}
+              <a
+                href="https://potenciapp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:text-indigo-300 font-bold transition-colors underline decoration-indigo-500/30"
+              >
+                potenciapp
+              </a>{' '}
+              con historial
+            </p>
           </div>
 
           {/* Tab buttons */}
